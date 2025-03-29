@@ -180,16 +180,6 @@ define Package/$(PKG_NAME)/conffiles
 /www/luci-static/resources/qrcode.min.js
 endef
 
-define Package/luci-app-passwall/install
-    echo "Installing passwall scripts..."
-    $(INSTALL_DIR) $(1)/etc/init.d
-    $(INSTALL_BIN) $(TOPDIR)/feeds/passwall/luci-app-passwall/files/etc/init.d/passwall $(1)/etc/init.d/
-
-    # Set execute permissions
-    echo "Setting execute permissions..."
-    $(CHMOD) +x $(1)/etc/init.d/passwall
-endef
-
 
 define Package/$(PKG_NAME)/postrm
 #!/bin/sh
