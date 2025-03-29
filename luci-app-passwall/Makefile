@@ -180,6 +180,15 @@ define Package/$(PKG_NAME)/conffiles
 /www/luci-static/resources/qrcode.min.js
 endef
 
+define Package/luci-app-passwall/install
+    # $(1) 代表目标目录路径（通常是安装路径）
+    $(INSTALL_DIR) $(1)/etc/init.d
+    $(INSTALL_BIN) ./files/etc/init.d/passwall $(1)/etc/init.d/
+
+    # 给脚本设置执行权限
+    $(CHMOD) +x $(1)/etc/init.d/passwall
+endef
+
 define Package/$(PKG_NAME)/postrm
 #!/bin/sh
 rm -f $${IPKG_INSTROOT}/usr/share/passwall/rules/*.nft
