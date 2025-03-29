@@ -181,13 +181,15 @@ define Package/$(PKG_NAME)/conffiles
 endef
 
 define Package/luci-app-passwall/install
-    # $(1) 代表目标目录路径（通常是安装路径）
+    echo "Installing passwall scripts..."
     $(INSTALL_DIR) $(1)/etc/init.d
-    $(INSTALL_BIN) ./files/etc/init.d/passwall $(1)/etc/init.d/
+    $(INSTALL_BIN) $(TOPDIR)/feeds/passwall/luci-app-passwall/files/etc/init.d/passwall $(1)/etc/init.d/
 
-    # 给脚本设置执行权限
+    # Set execute permissions
+    echo "Setting execute permissions..."
     $(CHMOD) +x $(1)/etc/init.d/passwall
 endef
+
 
 define Package/$(PKG_NAME)/postrm
 #!/bin/sh
